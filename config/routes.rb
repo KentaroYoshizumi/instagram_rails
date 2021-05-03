@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   
   devise_for :users
   
-  resources :photos
+  resources :photos do
+      resources :comments
+  end
   resources :users do
       resource :follow
       resource :followings
