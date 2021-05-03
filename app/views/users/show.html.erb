@@ -16,6 +16,10 @@
     <%= link_to 'followers', [@user, :followers] %>
 </div>
 
+<div>
+    <%= link_to 'likes', [@user, :likes] %>
+</div>
+
 <% @user.photos.each do |photo| %>
   <div>
   <p><%= photo.caption %></p>

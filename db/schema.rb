@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_162259) do
+ActiveRecord::Schema.define(version: 2021_05_03_194411) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(version: 2021_05_03_162259) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "photo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["photo_id"], name: "index_likes_on_photo_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "photos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "caption"
@@ -76,5 +85,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_162259) do
   add_foreign_key "comments", "photos"
   add_foreign_key "comments", "users"
   add_foreign_key "follows", "users"
+  add_foreign_key "likes", "photos"
+  add_foreign_key "likes", "users"
   add_foreign_key "photos", "users"
 end
