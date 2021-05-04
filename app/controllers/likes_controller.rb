@@ -2,7 +2,7 @@ class LikesController < ApplicationController
      before_action :authenticate_user!, only: %i[create destroy]
      
      def index
-         @photos = Photo.joins(:likes).where(likes: { user_id: params[]:user_id })
+         @photos = Photo.joins(:likes).where(likes: { user_id: params[:user_id] })
      end
      
      def create
